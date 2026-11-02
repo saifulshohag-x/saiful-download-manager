@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Saiful Download Manager Options</title>
+  <style>
+    body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; padding: 20px; max-width: 480px; background: #1e1e1e; color: #eee; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input { width: 100%; padding: 6px; font-size: 14px; box-sizing: border-box; background: #2a2a2a; color: #eee; border: 1px solid #444; border-radius: 4px; }
+    button { margin-top: 16px; padding: 8px 18px; background: #1aa260; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    .note { color: #888; font-size: 12px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <h2>Saiful Download Manager - Options</h2>
+  <label for="port">Desktop app port:</label>
+  <input type="number" id="port" min="1024" max="65535" value="9527">
+  <div class="note">Default: 9527.</div>
+  <button id="save">Save</button>
+  <p id="status" style="color:#1aa260;"></p>
+
+  <script>
+    const portInput = document.getElementById("port");
+    const saveBtn = document.getElementById("save");
+    const status = document.getElementById("status");
+    const api = typeof browser !== "undefined" ? browser : chrome;
+    api.storage.local.get(["port"], (res) => { portInput.value = res.port || 9527; });
+    saveBtn.addEventListener("click", () => {
+      const p = parseInt(portInput.value, 10);
+      if (isNaN(p) || p < 1024 || p > 65535) {
+        status.style.color = "#e0533d";
+        status.textContent = "Port must be between 1024 and 65535.";
+        return;
+      }
+      api.storage.local.set({ port: p }, () => {
+        status.style.color = "#1aa260";
+        status.textContent = "Saved.";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+/* content.css - Saiful Download Manager overlay button styles */
+
+/* Video overlay button - appears top-left of every video */
+.sdm-video-btn {
+  position: absolute;
+  z-index: 2147483647;
+  background: linear-gradient(135deg, #0fb84c 0%, #0a8a3a 100%);
+  color: #fff !important;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  pointer-events: auto;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.sdm-video-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.55);
+  background: linear-gradient(135deg, #14d058 0%, #0ca046 100%);
+}
+
+.sdm-video-btn:active {
+  transform: scale(0.96);
+}
+
+/* Download link button - small icon next to downloadable links */
+.sdm-link-btn {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 6px;
+  background: #0fb84c;
+  color: #fff !important;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: bold;
+  text-decoration: none !important;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transition: background 0.15s ease, transform 0.15s ease;
+  user-select: none;
+  line-height: 1.4;
+}
+
+.sdm-link-btn:hover {
+  background: #14d058;
+  transform: scale(1.1);
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* Floating toast notification */
+.sdm-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border-left: 4px solid #0fb84c;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 380px;
+}
+
+.sdm-toast.sdm-toast-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
